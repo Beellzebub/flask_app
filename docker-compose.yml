@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  web:
+    build:
+      context: ./application
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/usr/src/app
+    ports:
+       - "5000:5000"
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    depends_on:
+      - web
+    ports:
+       - "80:80"
