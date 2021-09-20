@@ -5,15 +5,15 @@ services:
     build:
       context: ./application
       dockerfile: Dockerfile
-    volumes:
-      - ./:/usr/src/app
-    ports:
-       - "5000:5000"
+    container_name: flask
+    expose:
+       - 5000
 
   nginx:
     build:
       context: ./nginx
       dockerfile: Dockerfile
+    container_name: nginx
     depends_on:
       - web
     ports:
